@@ -3,10 +3,9 @@
     %h3 2015.2
     %h3 SMULT - TELM.089
     %h2 SISTEMAS DE MULTIMIDIA
-    %h4 REGIS CRISTIANO PINHEIRO MARQUES
     %br
-    %h5 Henrique Bruno Oliveira Lima
-    %h5 M: 20122015020424
+    %h4 Henrique Bruno Oliveira Lima
+    %h4 M: 20122015020424
     %hr
   = form_for :calcHuffman, :url => {:controller => 'multimidia', :action => 'calcHuffman'}, method: "get", remote: true do |f|
     .left.column
@@ -21,32 +20,27 @@
 
   $('form').bind('ajax:complete', function(xhr, result){
     var obj = JSON.parse(result.responseText);
-    var resposta = "Usando a codificação ASCII (8 bits): " + obj.bits_asc2 + " bits" +
+    var resposta = "<strong>Usando a codificação ASCII (8 bits): </strong>" + obj.bits_asc2 + " bits" +
                   "<br /><br />" +
 
-                  "Codificação baseada em " + obj.base + "-bits: " + obj.bits_base + " bits" +
+                  "<strong>Codificação baseada em " + obj.base + "-bits: </strong>" + obj.bits_base + " bits" +
                   "<br />" +
-                  "Redução (" + obj.base + "-bits): " + obj.porcentagem_base + " %" + 
+                  "<strong>Redução (" + obj.base + "-bits): </strong>" + obj.porcentagem_base + " %" + 
                   "<br /><br />" +
 
-                  "Usando a codificação Huffman: " + obj.tamnaho_resposta + " bits" + 
+                  "<strong>Usando a codificação Huffman: </strong>" + obj.tamnaho_resposta + " bits" + 
                   "<br />" +
-                  "Redução (Huffman): " + obj.porcentagem_resposta + " %" + 
+                  "<strong>Redução (Huffman): </strong>" + obj.porcentagem_resposta + " %" + 
                   "<br /><br />" +
 
-                  "Codificação (Huffman): <br />" + obj.resposta +
+                  "<strong>Codificação (Huffman): <br /></strong>" + obj.resposta +
                   "<br /><br />" +
 
-                  "Frequencia: "  + JSON.stringify(obj.frequencia, null, '<br />') + 
+                  "<strong>Frequencia: </strong>"  + JSON.stringify(obj.frequencia, null, '<br />') + 
                   "<br />" +
 
                   "<br />" +
-                  "Dicionario: " + JSON.stringify(obj.dicionario, null, '<br />');
+                  "<strong>Dicionario: </strong>" + JSON.stringify(obj.dicionario, null, '<br />');
     
-
-
-
-
-
     $('.answer').html(resposta);
   });
