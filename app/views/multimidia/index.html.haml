@@ -1,7 +1,13 @@
 #content
   .title
-    %h2 Sistemas de Multimidia
-    %h3 Henrique Bruno Oliveira Lima
+    %h3 2015.2
+    %h3 SMULT - TELM.089
+    %h2 SISTEMAS DE MULTIMIDIA
+    %h4 REGIS CRISTIANO PINHEIRO MARQUES
+    %br
+    %h5 Henrique Bruno Oliveira Lima
+    %h5 M: 20122015020424
+    %hr
   = form_for :calcHuffman, :url => {:controller => 'multimidia', :action => 'calcHuffman'}, method: "get", remote: true do |f|
     .left.column
       = text_area_tag(:input, "Insira os dados a serem comprimidos", size: "24x6")
@@ -28,14 +34,14 @@
                   "Redução (Huffman): " + obj.porcentagem_resposta + " %" + 
                   "<br /><br />" +
 
-                  "Frequencia: <br />"  + JSON.stringify(obj.frequencia) + 
-                  "<br />" +
-
-                  "<br />" +
-                  "Dicionario: <br />" + JSON.stringify(obj.dicionario) + 
+                  "Codificação (Huffman): <br />" + obj.resposta +
                   "<br /><br />" +
 
-                  "Codificação (Huffman): <br />" + obj.resposta;
+                  "Frequencia: "  + JSON.stringify(obj.frequencia, null, '<br />') + 
+                  "<br />" +
+
+                  "<br />" +
+                  "Dicionario: " + JSON.stringify(obj.dicionario, null, '<br />');
     
 
 
