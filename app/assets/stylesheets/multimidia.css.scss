@@ -6,26 +6,28 @@
 
 
 #content{
-  width: 1000px;
+  width: 100%;
 
   .title {
-    width: 1000px;
+    width: 100%;
     text-align: center;
   }
 
   .left, .right, .center{
-    float: left; height: 300px;
-    padding-top: 100px;
+    float: left; 
+    height: 300px;
     text-align: center;
     margin: 0 auto;
   }
 
   .left{
-    width:400px;
+    width:20%;
+    padding-top: 100px;
   }
 
    .center{
-    width:200px;
+    width:20%;
+    padding-top: 100px;
 
     #button {
       height: 50px;
@@ -34,7 +36,11 @@
   }
 
   .right{
-    width:400px;
+    width:50%;
+    float: right; 
+    border-style: ridge;
+    height: 100%;
+    margin-top: 50px;
 
   }
 }

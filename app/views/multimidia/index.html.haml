@@ -14,32 +14,32 @@
       = submit_tag ("Codificação de Huffman ---> \n Entrega: 04/03/2016"), { :style => "height: 50px;" }
       
     .right.column
-      = label_tag(:answer, ".........", class: 'answer')
+      = label_tag(:answer, "...", class: 'answer')
 
 :javascript
 
   $('form').bind('ajax:complete', function(xhr, result){
     var obj = JSON.parse(result.responseText);
-    var resposta = "<strong>Usando a codificação ASCII (8 bits): </strong>" + obj.bits_asc2 + " bits" +
-                  "<br /><br />" +
+    var resposta = "<strong> Resultado: </strong>" +
+                  "<hr><strong>Usando a codificação ASCII (8 bits): </strong>" + obj.bits_asc2 + " bits" +
+                  "<br /> <hr>" +
 
                   "<strong>Codificação baseada em " + obj.base + "-bits: </strong>" + obj.bits_base + " bits" +
                   "<br />" +
                   "<strong>Redução (" + obj.base + "-bits): </strong>" + obj.porcentagem_base + " %" + 
-                  "<br /><br />" +
+                  "<br /> <hr>" +
 
                   "<strong>Usando a codificação Huffman: </strong>" + obj.tamnaho_resposta + " bits" + 
                   "<br />" +
                   "<strong>Redução (Huffman): </strong>" + obj.porcentagem_resposta + " %" + 
-                  "<br /><br />" +
+                  "<br /> <hr>" +
 
                   "<strong>Codificação (Huffman): <br /></strong>" + obj.resposta +
-                  "<br /><br />" +
+                  "<br /> <hr>" +
 
                   "<strong>Frequencia: </strong>"  + JSON.stringify(obj.frequencia, null, '<br />') + 
-                  "<br />" +
-
-                  "<br />" +
+                  "<br /> <hr>" +
+                  
                   "<strong>Dicionario: </strong>" + JSON.stringify(obj.dicionario, null, '<br />');
     
     $('.answer').html(resposta);
