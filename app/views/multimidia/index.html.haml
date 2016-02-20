@@ -18,9 +18,9 @@
     var resposta = "Usando a codificação ASCII (8 bits): " + obj.bits_asc2 + " bits" +
                   "<br /><br />" +
 
-                  "Codificação baseada em 3-bits: " + obj.bits_3 + " bits" +
+                  "Codificação baseada em " + obj.base + "-bits: " + obj.bits_base + " bits" +
                   "<br />" +
-                  "Redução (3-bits): " + obj.porcentagem_3 + " %" + 
+                  "Redução (" + obj.base + "-bits): " + obj.porcentagem_base + " %" + 
                   "<br /><br />" +
 
                   "Usando a codificação Huffman: " + obj.tamnaho_resposta + " bits" + 
@@ -35,7 +35,7 @@
                   "Dicionario: <br />" + JSON.stringify(obj.dicionario) + 
                   "<br /><br />" +
 
-                  "Codificação (Huffman): " + obj.resposta;
+                  "Codificação (Huffman): <br />" + obj.resposta;
     
 
 
