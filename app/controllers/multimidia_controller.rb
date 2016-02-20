@@ -6,8 +6,8 @@ class MultimidiaController < ApplicationController
     input = params[:input]
     resposta = Huffman.new(input)
 
-    base = (Math.sqrt($frequencies.length)).round
-
+    base = (Math.sqrt($frequencies.length)).ceil
+    puts base
     bits_asc2 = input.length * 8.0
     bits_base = input.length * base
 
