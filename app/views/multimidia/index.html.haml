@@ -1,0 +1,46 @@
+#content
+  .title
+    %h2 Sistemas de Multimidia
+    %h3 Henrique Bruno Oliveira Lima
+  = form_for :calcHuffman, :url => {:controller => 'multimidia', :action => 'calcHuffman'}, method: "get", remote: true do |f|
+    .left.column
+      = text_area_tag(:input, "Insira os dados a serem comprimidos", size: "24x6")
+    .center
+      = submit_tag ("Codificação de Huffman ---> \n Entrega: 04/03/2016"), { :style => "height: 50px;" }
+      
+    .right.column
+      = label_tag(:answer, ".........", class: 'answer')
+
+:javascript
+
+  $('form').bind('ajax:complete', function(xhr, result){
+    var obj = JSON.parse(result.responseText);
+    var resposta = "Usando a codificação ASCII (8 bits): " + obj.bits_asc2 + " bits" +
+                  "<br /><br />" +
+
+                  "Codificação baseada em 3-bits: " + obj.bits_3 + " bits" +
+                  "<br />" +
+                  "Redução (3-bits): " + obj.porcentagem_3 + " %" + 
+                  "<br /><br />" +
+
+                  "Usando a codificação Huffman: " + obj.tamnaho_resposta + " bits" + 
+                  "<br />" +
+                  "Redução (Huffman): " + obj.porcentagem_resposta + " %" + 
+                  "<br /><br />" +
+
+                  "Frequencia: <br />"  + JSON.stringify(obj.frequencia) + 
+                  "<br />" +
+
+                  "<br />" +
+                  "Dicionario: <br />" + JSON.stringify(obj.dicionario) + 
+                  "<br /><br />" +
+
+                  "Codificação (Huffman): " + obj.resposta;
+    
+
+
+
+
+
+    $('.answer').html(resposta);
+  });

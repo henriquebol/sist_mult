@@ -1,0 +1,42 @@
+// Place all the styles related to the multimidia controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+#content{
+  width: 1000px;
+
+  .title {
+    width: 1000px;
+    height: 100px;
+    text-align: center;
+  }
+
+  .left, .right, .center{
+    float: left; height: 300px;
+    padding-top: 100px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .left{
+    width:400px;
+  }
+
+   .center{
+    width:200px;
+
+    #button {
+      height: 50px;
+    }
+
+  }
+
+  .right{
+    width:400px;
+
+  }
+}
+
