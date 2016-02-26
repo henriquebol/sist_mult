@@ -19,8 +19,7 @@ class MultimidiaController < ApplicationController
   def calcHuffman (input)
     resposta = Huffman.new(input)
 
-    base = (Math.sqrt($frequencies.length)).ceil
-    puts base
+    base = (Math.sqrt($frequencia.length)).ceil # Acha a base menor
     bits_asc2 = input.length * 8.0
     bits_base = input.length * base
 
@@ -35,7 +34,7 @@ class MultimidiaController < ApplicationController
               tamnaho_resposta: resposta.to_s.length,
               porcentagem_resposta: porcentagem_resposta.to_s + "%",
               resposta: resposta.to_s,
-              frequencia: $frequencies,
+              frequencia: $frequencia,
               dicionario: resposta.procurar}.to_json
   end
 
