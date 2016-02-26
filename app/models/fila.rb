@@ -1,35 +1,37 @@
 class Fila < ActiveRecord::Base
-  attr_accessor :nodes, :huffman_root
+  attr_accessor :no, :raiz_huffman
 
   def initialize(string)
-    $frequencies = {}
-    string.each_char do |c|
-      $frequencies[c] ||= 0
-      $frequencies[c] += 1
+    $frequencia = {}
+    string.each_char do |c|     # Conta quantas vezes os simbolos aparecem
+      $frequencia[c] ||= 0      # O indice eh o caracatere eh o valor a quantidade
+      $frequencia[c] += 1
     end
-    @nodes = []
-    $frequencies.each do |c, w|
-      @nodes << No.new(:simbolo => c, :frequencia => w)
+    @no = []
+    $frequencia.each do |c, w|   
+      @no << No.new(:simbolo => c, :frequencia => w) # Cria um array de nos com simbolo e frequencia
     end
-    generate_tree
+    gerar_arvore # Gera a arvore
   end
 
-  def generate_tree
-    while @nodes.size > 1
-      sorted = @nodes.sort { |a,b| a.frequencia <=> b.frequencia }
+  def gerar_arvore
+    while @no.size > 1
+      ordenado = @no.sort { |a,b| a.frequencia <=> b.frequencia } # Ordena o aray de nos
       to_merge = []
-      2.times { to_merge << sorted.shift }
-      sorted << merge_nodes(to_merge[0], to_merge[1])
-      @nodes = sorted
+      2.times { to_merge << ordenado.shift } # Combina os dois simbolos de menor frequencia (Removendo dos ordenados)
+      ordenado << merge_no(to_merge[0], to_merge[1]) # Novo no eh inserido no array dos ordenados
+      @no = ordenado
     end
-    @huffman_root = @nodes.first
+    @raiz_huffman = @no.first # retorna a raiz
   end
 
-  def merge_nodes(node1, node2)
-    esquerda = node1.frequencia > node2.frequencia ? node2 : node1
-    direita = esquerda == node1 ? node2 : node1
-    node = No.new(:frequencia => esquerda.frequencia + direita.frequencia, :esquerda => esquerda, :direita => direita)
-    esquerda.pai = direita.pai = node
-    node
+#Soma as frequencias dos nos de menor frequencia
+#Faz o merge dos Nos
+  def merge_no(no1, no2)
+    esquerda = no1.frequencia > no2.frequencia ? no2 : no1
+    direita = esquerda == no1 ? no2 : no1
+    no = No.new(:frequencia => esquerda.frequencia + direita.frequencia, :esquerda => esquerda, :direita => direita)
+    esquerda.pai = direita.pai = no # Define o pai dos nos direita e esquerda
+    no
   end
 end

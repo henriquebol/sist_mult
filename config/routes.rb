@@ -1,6 +1,6 @@
 SistMult::Application.routes.draw do
   get "multimidia/index"
-  get "multimidia/calcHuffman"
+  get "multimidia/escolha"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

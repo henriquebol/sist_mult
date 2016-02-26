@@ -13,13 +13,14 @@ class No < ActiveRecord::Base
     walk_node('', &block)
   end
 
+# Define zeros e uns de forma recursiva
   def walk_node(code, &block)
     yield(self, code)
-    @esquerda.walk_node(code + '0', &block) unless @esquerda.nil?
-    @direita.walk_node(code + '1', &block) unless @direita.nil?
+    @esquerda.walk_node(code + '0', &block) unless @esquerda.nil? # Zero para caminhos para a esquerda
+    @direita.walk_node(code + '1', &block) unless @direita.nil? # Uns para caminhos para direita
   end
 
-  def leaf?
-    @simbolo != ''
+  def folha?
+    @simbolo != '' #Se simbolo existe entao eh uma folha 
   end
 end
