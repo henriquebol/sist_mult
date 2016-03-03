@@ -23,9 +23,10 @@
       .lz78
         %strong Level-Ziv (LZ78 + Huffman)
         %p O algoritmo LZ78 se baseia na construção de um dicionário com os dados encontrados anteriormente no arquivo a ser comprimido.
-        %p  - O  algoritmo   deve  diferenciar   letras  maiúsculas  e   minúsculas, espaços em  branco  e símbolos  de  pontuação.
-        %p  - Calcular   a   taxa  de  compactação   alcançada   utilizando  o   número mínimo  de  bits  possível  para  cada  campo (índice,  caractere).
-        %p - Utilizar   o   código  de  Huffman   em  cada  campo e   mostrar   o  ganho com a compressão.
+        %ul
+          %li O  algoritmo   deve  diferenciar   letras  maiúsculas  e   minúsculas, espaços em  branco  e símbolos  de  pontuação.
+          %li Calcular   a   taxa  de  compactação   alcançada   utilizando  o   número mínimo  de  bits  possível  para  cada  campo (índice,  caractere).
+          %li Utilizar   o   código  de  Huffman   em  cada  campo e   mostrar   o  ganho com a compressão.
         = f.submit ("LZ-78 + Huffman"), { :style => "height: 50px; width: 100%;" }
       
     .right.column
@@ -84,7 +85,7 @@
                   "<br /> <hr>" +
 
                   "<strong>Codificação (Huffman) para os caracteres (" + JSON.stringify(obj.caracteres_lz, null, ' ') + "): <br /></strong>" + obj.resposta2 +
-                  "<br /> <hr>" 
+                  "<br />" 
                   //"<br />" 
                   //"<strong>Obs: </strong> A taxa de compactação esta sendo gerada comparando com o texto em ASCII (8 bits) sem nenhum tipo de codificação"
                   ;
