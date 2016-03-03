@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160303040037) do
+ActiveRecord::Schema.define(:version => 20160302223105) do
 
   create_table "filas", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -24,11 +24,6 @@ ActiveRecord::Schema.define(:version => 20160303040037) do
   end
 
   create_table "lzs", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "metodos", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

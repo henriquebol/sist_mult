@@ -11,7 +11,8 @@
     .left.column
       %strong Digite ou importe os dados que serão codificados:
       // = text_area_tag(:input, "Insira os dados a serem comprimidos", size: "24x6")
-      = text_area_tag(:input, "ABBABBABBBAABABA", size: "24x6")
+      .textArea
+        = text_area_tag(:input, "ABBABBABBBAABABA", size: "24x6")
       .importar
         = f.file_field ("File"), {onchange: "pegaArquivo(this.files)"}
     .center
