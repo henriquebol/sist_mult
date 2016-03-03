@@ -8,6 +8,7 @@ gem 'rails', '3.2.21'
 gem 'pg'
 gem 'haml'
 
+gem 'remotipart', '~> 1.2'
 #gem "therubyracer"
 #gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 #gem "twitter-bootstrap-rails"

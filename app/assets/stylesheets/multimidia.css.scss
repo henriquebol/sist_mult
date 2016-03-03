@@ -11,11 +11,14 @@
   .title {
     width: 100%;
     text-align: center;
+    background: #2E9AFE;
+    color: white;
+    padding-top: 10px;
   }
 
   .left, .right, .center{
     float: left; 
-    height: 300px;
+    height: 100%;
     text-align: center;
     margin: 0 auto;
   }
@@ -23,11 +26,31 @@
   .left{
     width:20%;
     padding-top: 100px;
+
+    #input{
+      margin-top: 15px;
+    }
+
+    .importar {
+      padding-top: 10px;
+    }
   }
 
    .center{
     width:20%;
-    padding-top: 100px;
+    padding-bottom: 20px;
+    padding-right: 30px;
+
+    margin-left: 50px;
+    padding-left: 20px;
+
+    border-left-width: 2px;
+    border-left-style: outset;
+    border-left-color: #EEE5DE;
+
+    border-right-width: 2px;
+    border-right-style: outset;
+    border-right-color: #EEE5DE;
   }
 
   .right{

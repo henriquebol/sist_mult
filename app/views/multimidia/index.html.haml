@@ -2,51 +2,118 @@
   .title
     %h3 2015.2
     %h3 SMULT - TELM.089
-    %h2 SISTEMAS DE MULTIMIDIA
-    %br
-    %h4 Henrique Bruno Oliveira Lima
+    %h1 SISTEMAS DE MULTIMIDIA
+    %hr
+    %h3 Henrique Bruno Oliveira Lima
     %h4 M: 20122015020424
     %hr
   = form_for :calcHuffman, :url => {:controller => 'multimidia', :action => 'escolha'}, method: "get", remote: true do |f|
     .left.column
-      = text_area_tag(:input, "Insira os dados a serem comprimidos", size: "24x6")
+      %strong Digite ou importe os dados que serão codificados:
+      // = text_area_tag(:input, "Insira os dados a serem comprimidos", size: "24x6")
+      = text_area_tag(:input, "ABBABBABBBAABABA", size: "24x6")
+      .importar
+        = f.file_field ("File"), {onchange: "pegaArquivo(this.files)"}
     .center
-      = submit_tag ("Huffman"), { :style => "height: 50px; width: 100%;" }
-      = submit_tag ("LZ-78 + Huffman"), { :style => "height: 50px; margin-top: 10px; width: 100%;" }
+      .huffman
+        %strong Huffman
+        %p A codificação de Huffman é um método de compressão que usa as probabilidades de ocorrência dos símbolos no conjunto de dados a ser comprimido para determinar códigos de tamanho variável para cada símbolo.
+        = f.submit ("Huffman"), { :style => "height: 50px; width: 100%; class: button; margin-bottom: 20px" }
+      %hr
+      .lz78
+        %strong Level-Ziv (LZ78 + Huffman)
+        %p O algoritmo LZ78 se baseia na construção de um dicionário com os dados encontrados anteriormente no arquivo a ser comprimido.
+        %p  - O  algoritmo   deve  diferenciar   letras  maiúsculas  e   minúsculas, espaços em  branco  e símbolos  de  pontuação.
+        %p  - Calcular   a   taxa  de  compactação   alcançada   utilizando  o   número mínimo  de  bits  possível  para  cada  campo (índice,  caractere).
+        %p - Utilizar   o   código  de  Huffman   em  cada  campo e   mostrar   o  ganho com a compressão.
+        = f.submit ("LZ-78 + Huffman"), { :style => "height: 50px; width: 100%;" }
       
     .right.column
+      %h4 Resultado
       = label_tag(:answer, "...", class: 'answer')
 
 :javascript
+
+  function pegaArquivo(files){
+    console.log("Aqui");
+    var file = files[0];
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = loaded;
+  }
+
+  function loaded(evt) {  
+    var fileString = evt.target.result;
+    console.log(fileString);
+    document.getElementById('input').value = fileString.replace(/[\r\n]/g, "");
+  }
 
   $('form').bind('ajax:complete', function(xhr, result){
     var obj = JSON.parse(result.responseText);
 
     if (obj.cod == "LZ-78 + Huffman") {
-      console.log ("result");
-    }
 
-    var resposta = "<strong> Resultado: </strong>" +
-                  "<hr><strong>Usando a codificação ASCII (8 bits): </strong>" + obj.bits_asc2 + " bits" +
-                  "<br /> <hr>" +
+      var resposta = "<strong>LZ-78 + Huffman</strong>" +
 
-                  "<strong>Codificação baseada em " + obj.base + "-bits: </strong>" + obj.bits_base + " bits" +
-                  "<br />" +
-                  "<strong>Redução (" + obj.base + "-bits): </strong>" + obj.porcentagem_base + " %" + 
-                  "<br /> <hr>" +
-
-                  "<strong>Usando a codificação Huffman: </strong>" + obj.tamnaho_resposta + " bits" + 
-                  "<br />" +
-                  "<strong>Redução (Huffman): </strong>" + obj.porcentagem_resposta + " %" + 
-                  "<br /> <hr>" +
-
-                  "<strong>Codificação (Huffman): <br /></strong>" + obj.resposta +
-                  "<br /> <hr>" +
-
-                  "<strong>Frequencia: </strong>"  + JSON.stringify(obj.frequencia, null, '<br />') + 
+                  "<hr><strong> Considerando um byte por caractere (8 bits), sem nenhum tipo de codificação ("+obj.tamanho_input_original+" caracteres): </strong>" + 
+                      obj.bits_input_original + " bits" +
                   "<br /> <hr>" +
                   
-                  "<strong>Dicionario: </strong>" + JSON.stringify(obj.dicionario, null, '<br />');
-    
+                  // "<strong>Usando a codificação ASCII (8 bits) para todos os " + obj.quantidade_lz + " caracteres das duas colunas do LZ78: </strong>" + 
+                  //     obj.bits_original + " bits" +
+                  // "<br /> <hr>" +
+
+                  "<strong> Considerando um byte por caractere (8 bits) só para a coluna de caracteres ("+obj.caracteres_lz_quantidade+" caracteres) do LZ78 (" + JSON.stringify(obj.caracteres_lz, null, ' ') + "): </strong>" + 
+                  obj.bits_asc2 + " bits" +
+                  "<br /> <hr>" +
+
+                  "<strong>Codificação baseada em (" + obj.base + " bits) pra a coluna dos indices ("+obj.indices_lz_quantidade+" caracteres) do LZ78 (" + JSON.stringify(obj.indices_lz, null, ' ') + "): </strong>" + obj.bits_base + " bits" +
+                  "<br /> <hr>" +
+
+                  "<strong>Total de bits do LZ-78: </strong>" + obj.bits_lz78 + " bits" +
+                  "<br />" +
+                  "<strong>Taxa de compactação: </strong>" + obj.porcentagem_lz78 + 
+                  "<br /> <hr>" +
+
+                  "<strong>Usando a codificação Huffman (soma dos campos): </strong>" + obj.tamanho_resposta + " bits" + 
+                  "<br />" +
+                  "<strong>Taxa de compactação (Huffman): </strong>" + obj.porcentagem_resposta + 
+                  "<br /> <hr>" +
+
+                  "<strong>Codificação (Huffman) para os indices (" + JSON.stringify(obj.indices_lz, null, ' ') + "): <br /></strong>" + obj.resposta1 +
+                  "<br /> <hr>" +
+
+                  "<strong>Codificação (Huffman) para os caracteres (" + JSON.stringify(obj.caracteres_lz, null, ' ') + "): <br /></strong>" + obj.resposta2 +
+                  "<br /> <hr>" 
+                  //"<br />" 
+                  //"<strong>Obs: </strong> A taxa de compactação esta sendo gerada comparando com o texto em ASCII (8 bits) sem nenhum tipo de codificação"
+                  ;
+    }
+
+    else {
+      var resposta = "<strong>Huffman</strong>" +
+                      "<hr><strong>Usando a codificação ASCII (8 bits): </strong>" + 
+                      obj.bits_asc2 + " bits" +
+                      "<br /> <hr>" +
+
+                      "<strong>Codificação baseada em " + obj.base + "-bits: </strong>" + obj.bits_base + " bits" +
+                      "<br />" +
+                      "<strong>Taxa de compactação (" + obj.base + "-bits): </strong>" + obj.porcentagem_base + 
+                      "<br /> <hr>" +
+
+                      "<strong>Usando a codificação Huffman: </strong>" + obj.tamnaho_resposta + " bits" + 
+                      "<br />" +
+                      "<strong>Taxa de compactação (Huffman): </strong>" + obj.porcentagem_resposta + 
+                      "<br /> <hr>" +
+
+                      "<strong>Codificação (Huffman): <br /></strong>" + obj.resposta +
+                      "<br /> <hr>" +
+
+                      "<strong>Frequencia: </strong>"  + JSON.stringify(obj.frequencia, null, '<br />') + 
+                      "<br /> <hr>" +
+                      
+                      "<strong>Dicionario: </strong>" + JSON.stringify(obj.dicionario, null, '<br />');
+    }
+
     $('.answer').html(resposta);
   });

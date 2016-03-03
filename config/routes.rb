@@ -1,6 +1,7 @@
 SistMult::Application.routes.draw do
   get "multimidia/index"
   get "multimidia/escolha"
+  post "multimidia/escolha"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
