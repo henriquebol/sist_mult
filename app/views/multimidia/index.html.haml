@@ -55,9 +55,9 @@
 
     if (obj.cod == "LZ-78 + Huffman") {
 
-      var resposta = "<strong>LZ-78 + Huffman</strong>" +
+      var resposta = "<strong>| LZ-78 + Huffman |</strong>" +
 
-                  "<hr><strong> Considerando um byte por caractere (8 bits), sem nenhum tipo de codificação ("+obj.tamanho_input_original+" caracteres): </strong>" + 
+                  "<hr><strong> Considerando um byte por caractere (8 bits), sem nenhum tipo de codificação ("+obj.tamanho_input_original+" caracteres): </strong> <br /> " + 
                       obj.bits_input_original + " bits" +
                   "<br /> <hr>" +
                   
@@ -65,21 +65,21 @@
                   //     obj.bits_original + " bits" +
                   // "<br /> <hr>" +
 
-                  "<strong> Considerando um byte por caractere (8 bits) só para a coluna de caracteres ("+obj.caracteres_lz_quantidade+" caracteres) do LZ78 (" + JSON.stringify(obj.caracteres_lz, null, ' ') + "): </strong>" + 
+                  "<strong> Considerando um byte por caractere (8 bits) só para a coluna de caracteres ("+obj.caracteres_lz_quantidade+" caracteres) do LZ78 (" + JSON.stringify(obj.caracteres_lz, null, ' ') + "): </strong> <br /> " + 
                   obj.bits_asc2 + " bits" +
                   "<br /> <hr>" +
 
-                  "<strong>Codificação baseada em (" + obj.base + " bits) pra a coluna dos indices ("+obj.indices_lz_quantidade+" caracteres) do LZ78 (" + JSON.stringify(obj.indices_lz, null, ' ') + "): </strong>" + obj.bits_base + " bits" +
+                  "<strong>Codificação baseada em (" + obj.base + " bits) pra a coluna dos indices ("+obj.indices_lz_quantidade+" caracteres) do LZ78 (" + JSON.stringify(obj.indices_lz, null, ' ') + "): </strong> <br /> " + obj.bits_base + " bits" +
                   "<br /> <hr>" +
 
-                  "<strong>Total de bits do LZ-78: </strong>" + obj.bits_lz78 + " bits" +
+                  "<strong>Total de bits do LZ-78: </strong> <br /> " + obj.bits_lz78 + " bits" +
                   "<br />" +
-                  "<strong>Taxa de compactação: </strong>" + obj.porcentagem_lz78 + 
+                  "<strong>Taxa de compactação: </strong> <br /> " + obj.porcentagem_lz78 + 
                   "<br /> <hr>" +
 
-                  "<strong>Usando a codificação Huffman (soma dos campos): </strong>" + obj.tamanho_resposta + " bits" + 
+                  "<strong>Usando a codificação Huffman (soma dos campos): </strong> <br /> " + obj.tamanho_resposta + " bits" + 
                   "<br />" +
-                  "<strong>Taxa de compactação (Huffman): </strong>" + obj.porcentagem_resposta + 
+                  "<strong>Taxa de compactação (Huffman): </strong> <br /> " + obj.porcentagem_resposta + 
                   "<br /> <hr>" +
 
                   "<strong>Codificação (Huffman) para os indices (" + JSON.stringify(obj.indices_lz, null, ' ') + "): <br /></strong>" + obj.resposta1 +
@@ -93,19 +93,19 @@
     }
 
     else {
-      var resposta = "<strong>Huffman</strong>" +
-                      "<hr><strong>Usando a codificação ASCII (8 bits): </strong>" + 
+      var resposta = "<strong>| Huffman |</strong>" +
+                      "<hr><strong>Usando a codificação ASCII (8 bits): </strong> <br /> " + 
                       obj.bits_asc2 + " bits" +
                       "<br /> <hr>" +
 
-                      "<strong>Codificação baseada em " + obj.base + "-bits: </strong>" + obj.bits_base + " bits" +
+                      "<strong>Codificação baseada em " + obj.base + "-bits: </strong> <br /> " + obj.bits_base + " bits" +
                       "<br />" +
-                      "<strong>Taxa de compactação (" + obj.base + "-bits): </strong>" + obj.porcentagem_base + 
+                      "<strong>Taxa de compactação (" + obj.base + "-bits): </strong> <br /> " + obj.porcentagem_base + 
                       "<br /> <hr>" +
 
-                      "<strong>Usando a codificação Huffman: </strong>" + obj.tamnaho_resposta + " bits" + 
+                      "<strong>Usando a codificação Huffman: </strong> <br /> " + obj.tamnaho_resposta + " bits" + 
                       "<br />" +
-                      "<strong>Taxa de compactação (Huffman): </strong>" + obj.porcentagem_resposta + 
+                      "<strong>Taxa de compactação (Huffman): </strong> <br /> " + obj.porcentagem_resposta + 
                       "<br /> <hr>" +
 
                       "<strong>Codificação (Huffman): <br /></strong>" + obj.resposta +
